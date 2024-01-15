@@ -1,0 +1,39 @@
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Department {
+  id: String!
+  name: String!
+  students: [Student!]!
+  created_at: DateTime!
+}
+
+type Student {
+  id: String!
+  name: String!
+  email: String!
+  password: String!
+  department: Department!
+  created_at: DateTime!
+}
+
+input CreateDepartmentInput {
+  name: String!
+}
+
+# input UpdateDepartmentInput {
+#   id: Int!
+# }
+
+type Query {
+  departments: [Department]!
+  department(id: String!): Department
+}
+
+type Mutation {
+  createDepartment(createDepartmentInput: CreateDepartmentInput!): Department!
+  # updateDepartment(updateDepartmentInput: UpdateDepartmentInput!): Department!
+  # removeDepartment(id: Int!): Department
+}
