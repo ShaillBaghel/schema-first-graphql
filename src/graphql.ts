@@ -10,6 +10,7 @@
 
 export class CreateDepartmentInput {
     name: string;
+    isActive: boolean;
 }
 
 export class CreateStudentInput {
@@ -22,6 +23,7 @@ export class CreateStudentInput {
 export class Department {
     id: string;
     name: string;
+    isActive: boolean;
     students: Student[];
     created_at: DateTime;
 }

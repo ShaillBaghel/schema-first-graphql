@@ -27,6 +27,9 @@ export class Department extends BaseEntity {
   @Column({ type: 'varchar' })
   name: string;
 
+  @Column({nullable: true})
+  isActive: boolean;
+
 
   @OneToMany(()=> Student, (student: Student)=> student.department)
   students: Student[]

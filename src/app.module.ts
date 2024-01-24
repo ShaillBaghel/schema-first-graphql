@@ -7,6 +7,8 @@ import { DepartmentModule } from './department/department.module';
 import { Department } from './department/entities/department.entity';
 import { StudentModule } from './student/student.module';
 import { Student } from './student/entities/student.entity';
+import { DirectiveLocation, GraphQLDirective } from 'graphql';
+import { upperDirectiveTransformer } from './upper.directive';
 
 @Module({
   imports: [
@@ -16,6 +18,15 @@ import { Student } from './student/entities/student.entity';
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
         outputAs: 'class',
+      },
+      transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
+      buildSchemaOptions: {
+        directives: [
+          new GraphQLDirective({
+            name: 'upper',
+            locations: [DirectiveLocation.FIELD_DEFINITION],
+          }),
+        ],
       },
     }),
     TypeOrmModule.forRoot({

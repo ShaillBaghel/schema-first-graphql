@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Directive } from '@nestjs/graphql';
 import { DepartmentService } from './department.service';
 import { CreateDepartmentInput } from './dto/create-department.input';
 import { UpdateDepartmentInput } from './dto/update-department.input';
@@ -12,6 +12,7 @@ export class DepartmentResolver {
     return this.departmentService.create(createDepartmentInput);
   }
 
+  @Directive('@deprecated(reason: "This query will be removed in the next version")')
   @Query('departments')
   findAll() {
     return this.departmentService.findAll();

@@ -2,10 +2,11 @@
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
+directive @upper on FIELD_DEFINITION
 type Department {
   id: String!
-  name: String!
+  name: String! @upper
+  isActive: Boolean!
   students: [Student!]!
   created_at: DateTime!
 }
@@ -21,6 +22,7 @@ type Student {
 
 input CreateDepartmentInput {
   name: String!
+  isActive: Boolean!
 }
 
 # input UpdateDepartmentInput {
